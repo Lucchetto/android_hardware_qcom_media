@@ -20,6 +20,8 @@ libmm-venc-def += -USINGLE_ENCODER_INSTANCE
 libmm-venc-def += -Werror
 libmm-venc-def += -D_ANDROID_ICS_
 libmm-venc-def += -D_MSM8974_
+libmm-venc-def += -Wno-constant-logical-operand
+libmm-venc-def += -Wno-implicit-fallthrough
 
 TARGETS_THAT_USE_FLAG_MSM8226 := msm8226 msm8916 msm8909
 TARGETS_THAT_NEED_SW_VENC_MPEG4 := msm8909 msm8937
@@ -103,6 +105,7 @@ endif
 
 # Common Includes
 libmm-venc-inc      := $(LOCAL_PATH)/inc
+libmm-venc-inc      += $(call project-path-for,qcom-display)/libcopybit
 libmm-venc-inc      += $(call project-path-for,qcom-media)/mm-video-v4l2/vidc/common/inc
 libmm-venc-inc      += $(call project-path-for,qcom-media)/mm-core/inc
 libmm-venc-inc      += $(call project-path-for,qcom-media)/libstagefrighthw
@@ -139,6 +142,7 @@ LOCAL_VENDOR_MODULE             := true
 LOCAL_CFLAGS                    := $(libmm-venc-def)
 
 LOCAL_HEADER_LIBRARIES := \
+        display_headers \
         media_plugin_headers \
         libnativebase_headers \
         libcutils_headers \
